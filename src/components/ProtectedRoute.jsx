@@ -1,6 +1,7 @@
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import LoadingSpinner from "./LoadingSpinner";
+import { isDemoMode } from "../config/demo";
 
 export default function ProtectedRoute({ children, adminOnly = false }) {
   const { user, loading } = useAuth();
@@ -13,11 +14,11 @@ export default function ProtectedRoute({ children, adminOnly = false }) {
     );
   }
 
-  if (!user) {
+  if (!user && !isDemoMode) {
     return <Navigate to="/login" replace />;
   }
 
-  if (adminOnly && user.role !== "admin") {
+  if (adminOnly && user?.role !== "admin") {
     return <Navigate to="/dashboard" replace />;
   }
 

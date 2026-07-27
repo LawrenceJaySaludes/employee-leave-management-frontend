@@ -1,5 +1,7 @@
 import { createContext, useState, useEffect, useCallback } from "react";
 import authService from "../services/authService";
+import { isDemoMode } from "../config/demo";
+import { mockUser } from "../data/mockData";
 
 export const AuthContext = createContext(null);
 
@@ -8,6 +10,11 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   const fetchUser = useCallback(async () => {
+    if (isDemoMode) {
+      setUser(mockUser);
+      setLoading(false);
+      return;
+    }
     const token = localStorage.getItem("token");
     if (!token) {
       setLoading(false);

@@ -3,6 +3,7 @@ import leaveRequestService from "../../services/leaveRequestService";
 import DataTable from "../../components/DataTable";
 import Pagination from "../../components/Pagination";
 import SearchBar from "../../components/SearchBar";
+import DemoButton from "../../components/DemoButton";
 import { AuthContext } from "../../contexts/AuthContext";
 import Swal from "sweetalert2";
 import dayjs from "dayjs";
@@ -174,22 +175,22 @@ export default function AllRequests() {
         const isLoading = actionLoading === row.id;
         return (
           <div className="flex items-center justify-end gap-1">
-            <button
+            <DemoButton
               onClick={(e) => { e.stopPropagation(); handleApprove(row); }}
               disabled={isLoading}
               className="p-2 rounded-lg text-emerald-500 hover:bg-emerald-50 disabled:opacity-40 transition-colors"
               title="Approve"
             >
               <HiCheckCircle className="h-5 w-5" />
-            </button>
-            <button
+            </DemoButton>
+            <DemoButton
               onClick={(e) => { e.stopPropagation(); handleReject(row); }}
               disabled={isLoading}
               className="p-2 rounded-lg text-red-500 hover:bg-red-50 disabled:opacity-40 transition-colors"
               title="Reject"
             >
               <HiXCircle className="h-5 w-5" />
-            </button>
+            </DemoButton>
           </div>
         );
       },

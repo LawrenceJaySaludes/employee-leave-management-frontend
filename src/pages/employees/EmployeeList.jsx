@@ -4,6 +4,7 @@ import DataTable from "../../components/DataTable";
 import Pagination from "../../components/Pagination";
 import SearchBar from "../../components/SearchBar";
 import ConfirmModal from "../../components/ConfirmModal";
+import DemoButton from "../../components/DemoButton";
 import Swal from "sweetalert2";
 import { HiPlus, HiPencilSquare, HiTrash } from "react-icons/hi2";
 
@@ -114,12 +115,12 @@ export default function EmployeeList() {
       label: "",
       render: (_, row) => (
         <div className="flex items-center justify-end gap-1">
-          <button onClick={(e) => { e.stopPropagation(); openEdit(row); }} className="p-2 rounded-lg text-slate-400 hover:text-primary-600 hover:bg-primary-50 transition-colors" title="Edit">
+          <DemoButton onClick={(e) => { e.stopPropagation(); openEdit(row); }} className="p-2 rounded-lg text-slate-400 hover:text-primary-600 hover:bg-primary-50 transition-colors" title="Edit">
             <HiPencilSquare className="h-4 w-4" />
-          </button>
-          <button onClick={(e) => { e.stopPropagation(); setDeleteTarget(row); }} className="p-2 rounded-lg text-slate-400 hover:text-danger hover:bg-red-50 transition-colors" title="Delete">
+          </DemoButton>
+          <DemoButton onClick={(e) => { e.stopPropagation(); setDeleteTarget(row); }} className="p-2 rounded-lg text-slate-400 hover:text-danger hover:bg-red-50 transition-colors" title="Delete">
             <HiTrash className="h-4 w-4" />
-          </button>
+          </DemoButton>
         </div>
       ),
     },
@@ -132,10 +133,10 @@ export default function EmployeeList() {
           <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Employees</h1>
           <p className="text-slate-500 mt-1">{pagination.total} total employees</p>
         </div>
-        <button onClick={openCreate} className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary-600 text-white text-sm font-medium rounded-xl hover:bg-primary-700 shadow-sm shadow-primary-200 transition-all">
+        <DemoButton onClick={openCreate} className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary-600 text-white text-sm font-medium rounded-xl hover:bg-primary-700 shadow-sm shadow-primary-200 transition-all">
           <HiPlus className="h-4 w-4" />
           Add Employee
-        </button>
+        </DemoButton>
       </div>
 
       <SearchBar value={search} onChange={handleSearch} placeholder="Search by name, email, or department..." className="max-w-sm" />

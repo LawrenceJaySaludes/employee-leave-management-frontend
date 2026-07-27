@@ -3,6 +3,7 @@ import leaveRequestService from "../../services/leaveRequestService";
 import leaveTypeService from "../../services/leaveTypeService";
 import DataTable from "../../components/DataTable";
 import ConfirmModal from "../../components/ConfirmModal";
+import DemoButton from "../../components/DemoButton";
 import Swal from "sweetalert2";
 import dayjs from "dayjs";
 import { HiPlus, HiTrash } from "react-icons/hi2";
@@ -112,9 +113,9 @@ export default function MyRequests() {
       render: (_, row) => (
         <div className="flex items-center justify-end gap-1">
           {row.status === "pending" && (
-            <button onClick={(e) => { e.stopPropagation(); setDeleteTarget(row); }} className="p-2 rounded-lg text-slate-400 hover:text-danger hover:bg-red-50 transition-colors" title="Cancel request">
+            <DemoButton onClick={(e) => { e.stopPropagation(); setDeleteTarget(row); }} className="p-2 rounded-lg text-slate-400 hover:text-danger hover:bg-red-50 transition-colors" title="Cancel request">
               <HiTrash className="h-4 w-4" />
-            </button>
+            </DemoButton>
           )}
         </div>
       ),
@@ -128,10 +129,10 @@ export default function MyRequests() {
           <h1 className="text-2xl font-bold text-slate-900 tracking-tight">My Leave Requests</h1>
           <p className="text-slate-500 mt-1">{requests.length} requests</p>
         </div>
-        <button onClick={openCreate} className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary-600 text-white text-sm font-medium rounded-xl hover:bg-primary-700 shadow-sm shadow-primary-200 transition-all">
+        <DemoButton onClick={openCreate} className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary-600 text-white text-sm font-medium rounded-xl hover:bg-primary-700 shadow-sm shadow-primary-200 transition-all">
           <HiPlus className="h-4 w-4" />
           New Request
-        </button>
+        </DemoButton>
       </div>
 
       <DataTable columns={columns} data={requests} loading={loading} emptyTitle="No leave requests" emptyDescription="Submit your first leave request to get started." />
